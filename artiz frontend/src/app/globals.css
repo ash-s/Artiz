@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Prata&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FAF8F5;
+  --foreground: #26221F;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Editorial & Display Typography Classes */
+.font-display-luxury {
+  font-family: "Italiana", "Prata", Didot, "Playfair Display", Georgia, serif;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+.font-serif-luxury {
+  font-family: "Prata", "Cormorant Garamond", Georgia, serif;
+}
+
+/* 2.5D Perspective Tilt Helper */
+.perspective-container {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F4EFEB;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8CFBE;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B89467;
+}
