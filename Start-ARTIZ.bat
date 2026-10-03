@@ -1,7 +1,7 @@
 @echo off
 title ARTIZ Living & Interiors Platform
 D:
-cd "D:\Projects\furniture-interior-platform\artiz frontend"
+cd "D:\Projects\furniture-interior-platform\artiz-frontend"
 echo ==============================================
 echo Launching ARTIZ Furniture & Interiors Platform
 echo ==============================================
