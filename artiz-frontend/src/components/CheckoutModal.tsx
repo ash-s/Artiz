@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useStore } from "@/context/StoreContext";
 import { submitOrder, formatRupees } from "@/lib/api";
 import confetti from "canvas-confetti";
-import { X, ShieldCheck, CheckCircle2, Truck, CreditCard, Calendar, Printer } from "lucide-react";
+import { X, ShieldCheck, CheckCircle2, Truck, CreditCard, Printer } from "lucide-react";
 
 export default function CheckoutModal() {
   const { isCheckoutOpen, closeCheckout, cart, cartSubtotal, cartDiscount, cartTotal, clearCart } = useStore();
@@ -77,8 +77,8 @@ export default function CheckoutModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in overflow-y-auto">
-      <div className="bg-japandi-bg rounded-2xl max-w-2xl w-full p-6 sm:p-8 border border-japandi-border shadow-2xl relative space-y-6 my-8">
+    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-3 sm:p-4 animate-fade-in overflow-y-auto">
+      <div className="bg-white rounded-2xl max-w-2xl w-full p-4 sm:p-7 md:p-8 border border-gray-200 shadow-2xl relative space-y-5 my-auto max-h-[92vh] overflow-y-auto">
         
         {/* Close Button */}
         <button
@@ -86,7 +86,7 @@ export default function CheckoutModal() {
             setCompletedOrder(null);
             closeCheckout();
           }}
-          className="absolute top-5 right-5 text-japandi-subtle hover:text-japandi-dark"
+          className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-black transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -94,21 +94,21 @@ export default function CheckoutModal() {
         {!completedOrder ? (
           <div>
             {/* Header */}
-            <div className="flex items-center gap-3 pb-4 border-b border-japandi-border">
-              <div className="w-9 h-9 rounded-full bg-japandi-brass text-white flex items-center justify-center">
+            <div className="flex items-center gap-3 pb-3 sm:pb-4 border-b border-gray-200">
+              <div className="w-9 h-9 rounded-full bg-japandi-brass text-white flex items-center justify-center flex-shrink-0">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="font-display-luxury text-2xl sm:text-3xl text-japandi-dark">
                   White Glove Secure Checkout
                 </h3>
-                <span className="text-xs text-japandi-muted">
+                <span className="text-xs text-gray-500">
                   Bespoke in-home delivery and unpackaging included across India.
                 </span>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6 pt-4">
+            <form onSubmit={handleSubmit} className="space-y-5 pt-3 sm:pt-4">
               
               {/* Client Info */}
               <div className="space-y-3">
@@ -117,90 +117,90 @@ export default function CheckoutModal() {
                 </h4>
                 <div className="grid sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs text-japandi-muted block mb-1">Full Name *</label>
+                    <label className="text-xs text-gray-600 block mb-1">Full Name *</label>
                     <input
                       type="text"
                       required
                       value={customerInfo.name}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
                       placeholder="e.g. Sasidharan"
-                      className="w-full bg-white border border-[#DDD3C1] rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass"
+                      className="w-full bg-[#FAF8F5] border border-gray-300 rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-japandi-muted block mb-1">Email Address *</label>
+                    <label className="text-xs text-gray-600 block mb-1">Email Address *</label>
                     <input
                       type="email"
                       required
                       value={customerInfo.email}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
                       placeholder="client@example.com"
-                      className="w-full bg-white border border-[#DDD3C1] rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass"
+                      className="w-full bg-[#FAF8F5] border border-gray-300 rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass shadow-sm"
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="text-xs text-japandi-muted block mb-1">Phone Number for Delivery Coordination</label>
+                    <label className="text-xs text-gray-600 block mb-1">Phone Number for Delivery Coordination</label>
                     <input
                       type="tel"
                       value={customerInfo.phone}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
                       placeholder="+91 98201 01928"
-                      className="w-full bg-white border border-[#DDD3C1] rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass"
+                      className="w-full bg-[#FAF8F5] border border-gray-300 rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass shadow-sm"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Delivery Address */}
-              <div className="space-y-3 pt-2 border-t border-japandi-border">
+              <div className="space-y-3 pt-2 border-t border-gray-200">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-japandi-brass">
                   2. In-Home Delivery Address
                 </h4>
-                <div className="grid sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="sm:col-span-3">
-                    <label className="text-xs text-japandi-muted block mb-1">Street Address *</label>
+                    <label className="text-xs text-gray-600 block mb-1">Street Address *</label>
                     <input
                       type="text"
                       required
                       value={customerInfo.address}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
                       placeholder="120 Sanctuary Way, Suite 400"
-                      className="w-full bg-white border border-[#DDD3C1] rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass"
+                      className="w-full bg-[#FAF8F5] border border-gray-300 rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-japandi-muted block mb-1">City</label>
+                    <label className="text-xs text-gray-600 block mb-1">City</label>
                     <input
                       type="text"
                       value={customerInfo.city}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, city: e.target.value })}
-                      className="w-full bg-white border border-[#DDD3C1] rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass"
+                      className="w-full bg-[#FAF8F5] border border-gray-300 rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-japandi-muted block mb-1">Postal Code (PIN)</label>
+                    <label className="text-xs text-gray-600 block mb-1">Postal Code (PIN)</label>
                     <input
                       type="text"
                       value={customerInfo.postalCode}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, postalCode: e.target.value })}
-                      className="w-full bg-white border border-[#DDD3C1] rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass"
+                      className="w-full bg-[#FAF8F5] border border-gray-300 rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-japandi-muted block mb-1">Preferred Date</label>
+                    <label className="text-xs text-gray-600 block mb-1">Preferred Date</label>
                     <input
                       type="date"
                       value={customerInfo.deliveryDate}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, deliveryDate: e.target.value })}
-                      className="w-full bg-white border border-[#DDD3C1] rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass"
+                      className="w-full bg-[#FAF8F5] border border-gray-300 rounded-lg p-2.5 text-xs text-japandi-dark focus:outline-none focus:border-japandi-brass shadow-sm"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Order Summary Box */}
-              <div className="bg-japandi-surface p-4 rounded-xl border border-[#E5DEC9] space-y-2 text-xs">
-                <div className="flex justify-between text-japandi-muted">
+              <div className="bg-gray-50 p-3.5 sm:p-4 rounded-xl border border-gray-200 space-y-2 text-xs">
+                <div className="flex justify-between text-gray-600">
                   <span>Subtotal ({cart.length} unique pieces)</span>
                   <span>{formatRupees(cartSubtotal)}</span>
                 </div>
@@ -210,14 +210,14 @@ export default function CheckoutModal() {
                     <span>-{formatRupees(cartDiscount)}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-japandi-muted">
+                <div className="flex justify-between text-gray-600">
                   <span className="flex items-center gap-1">
                     <Truck className="w-3.5 h-3.5 text-japandi-brass" />
                     White Glove Placement &amp; Packaging Removal
                   </span>
                   <span className="text-emerald-700 font-semibold">Free Included</span>
                 </div>
-                <div className="flex justify-between text-sm font-bold text-japandi-dark pt-2 border-t border-[#DDD3C1]">
+                <div className="flex justify-between text-sm font-bold text-japandi-dark pt-2 border-t border-gray-200">
                   <span>Total Amount Due</span>
                   <span>{formatRupees(cartTotal)}</span>
                 </div>
@@ -227,39 +227,39 @@ export default function CheckoutModal() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 rounded-lg bg-japandi-dark hover:bg-japandi-darkHover text-japandi-bg text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-3 sm:py-3.5 rounded-lg bg-japandi-dark hover:bg-black text-white text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <CreditCard className="w-4 h-4 text-japandi-brass" />
-                {isSubmitting ? "Placing Order with Workshop..." : `Confirm Order • ${formatRupees(cartTotal)}`}
+                <span>{isSubmitting ? "Placing Order with Workshop..." : `Confirm Order • ${formatRupees(cartTotal)}`}</span>
               </button>
 
             </form>
           </div>
         ) : (
-          <div className="text-center py-8 space-y-4">
-            <div className="w-16 h-16 rounded-full bg-japandi-brass text-white flex items-center justify-center mx-auto shadow-md">
-              <CheckCircle2 className="w-9 h-9" />
+          <div className="text-center py-6 sm:py-8 space-y-4">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-japandi-brass text-white flex items-center justify-center mx-auto shadow-md">
+              <CheckCircle2 className="w-8 h-8 sm:w-9 sm:h-9" />
             </div>
 
-            <h3 className="font-display-luxury text-3xl sm:text-4xl text-japandi-dark">
+            <h3 className="font-display-luxury text-2xl sm:text-4xl text-japandi-dark">
               Order Confirmed &amp; In Production
             </h3>
 
-            <p className="text-xs text-japandi-muted max-w-md mx-auto leading-relaxed">
+            <p className="text-xs text-gray-600 max-w-md mx-auto leading-relaxed">
               Thank you, <strong>{completedOrder.customerName}</strong>. Your heirloom furniture order <strong>#{completedOrder.orderNumber}</strong> has been saved. Our master joiners are preparing your pieces for White Glove delivery on <strong>{completedOrder.deliveryDate}</strong>.
             </p>
 
-            <div className="bg-japandi-surface p-4 rounded-xl border border-[#E5DEC9] max-w-md mx-auto text-left text-xs space-y-1.5">
+            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 max-w-md mx-auto text-left text-xs space-y-1.5">
               <div className="flex justify-between">
-                <span className="text-japandi-muted">Order Number:</span>
+                <span className="text-gray-500">Order Number:</span>
                 <span className="font-bold text-japandi-dark">{completedOrder.orderNumber}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-japandi-muted">Destination:</span>
+                <span className="text-gray-500">Destination:</span>
                 <span className="font-medium text-japandi-dark">{completedOrder.shippingAddress}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-japandi-muted">Total Paid:</span>
+                <span className="text-gray-500">Total Paid:</span>
                 <span className="font-bold text-japandi-brass">{formatRupees(completedOrder.totalAmount || cartTotal)}</span>
               </div>
             </div>
@@ -267,10 +267,10 @@ export default function CheckoutModal() {
             <div className="flex items-center justify-center gap-3 pt-3">
               <button
                 onClick={() => window.print()}
-                className="px-4 py-2 rounded-lg border border-[#DDD3C1] text-xs font-medium text-japandi-dark hover:bg-japandi-surface flex items-center gap-1.5"
+                className="px-4 py-2 rounded-lg border border-gray-300 text-xs font-medium text-gray-800 hover:bg-gray-50 flex items-center gap-1.5"
               >
                 <Printer className="w-3.5 h-3.5" />
-                Print Invoice
+                <span>Print Invoice</span>
               </button>
 
               <button
@@ -278,7 +278,7 @@ export default function CheckoutModal() {
                   setCompletedOrder(null);
                   closeCheckout();
                 }}
-                className="px-6 py-2 rounded-lg bg-japandi-dark text-white text-xs font-bold"
+                className="px-6 py-2 rounded-lg bg-japandi-dark text-white text-xs font-bold hover:bg-black transition-colors"
               >
                 Return to Studio
               </button>

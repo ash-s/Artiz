@@ -64,15 +64,15 @@ export default function ConsultationWizard() {
   };
 
   return (
-    <section id="consultation-wizard" className="bg-japandi-dark text-japandi-bg py-20">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="consultation-wizard" className="bg-japandi-dark text-japandi-bg py-12 sm:py-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
-        <div className="text-center space-y-3 mb-12">
+        <div className="text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-12">
           <span className="text-[10px] font-bold tracking-luxury text-japandi-brass uppercase block mb-1">
             Bespoke Architectural Studio
           </span>
-          <h2 className="font-display-luxury text-4xl sm:text-5xl font-normal text-white">
+          <h2 className="font-display-luxury text-3xl xs:text-4xl sm:text-5xl font-normal text-white">
             Interior Design Consultation Wizard
           </h2>
           <p className="text-xs sm:text-sm text-[#BFB5A8] max-w-lg mx-auto font-sans leading-relaxed">
@@ -81,23 +81,23 @@ export default function ConsultationWizard() {
         </div>
 
         {/* Wizard Container */}
-        <div className="bg-[#362D26] rounded-2xl border border-[#4D4036] p-6 sm:p-10 shadow-2xl">
+        <div className="bg-[#362D26] rounded-2xl border border-[#4D4036] p-4 sm:p-8 md:p-10 shadow-2xl">
           
           {/* Progress Tracker */}
-          <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#4D4036] text-xs">
+          <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-[#4D4036] text-xs">
             {[
-              { num: 1, label: "Target Space" },
+              { num: 1, label: "Space" },
               { num: 2, label: "Aesthetic" },
-              { num: 3, label: "Scope & Budget" },
-              { num: 4, label: "Confirmation" },
+              { num: 3, label: "Budget" },
+              { num: 4, label: "Confirm" },
             ].map((s, idx) => {
               const isCurrent = step === s.num;
               const isCompleted = step > s.num;
               return (
                 <React.Fragment key={s.num}>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <span
-                      className={`w-6 h-6 rounded-full font-bold flex items-center justify-center text-xs transition-colors ${
+                      className={`w-6 h-6 rounded-full font-bold flex items-center justify-center text-xs transition-colors flex-shrink-0 ${
                         isCurrent || isCompleted
                           ? "bg-japandi-brass text-japandi-dark"
                           : "bg-[#4D4036] text-[#A69C90]"
@@ -105,11 +105,11 @@ export default function ConsultationWizard() {
                     >
                       {isCompleted ? <Check className="w-3.5 h-3.5" /> : s.num}
                     </span>
-                    <span className={`hidden sm:inline ${isCurrent ? "font-semibold text-white tracking-wide" : "text-[#A69C90]"}`}>
+                    <span className={`text-[11px] sm:text-xs ${isCurrent ? "font-semibold text-white tracking-wide" : "text-[#A69C90] hidden xs:inline"}`}>
                       {s.label}
                     </span>
                   </div>
-                  {idx < 3 && <div className="w-8 sm:w-16 h-px bg-[#4D4036]" />}
+                  {idx < 3 && <div className="flex-1 h-px bg-[#4D4036] mx-1 sm:mx-3" />}
                 </React.Fragment>
               );
             })}
@@ -117,12 +117,12 @@ export default function ConsultationWizard() {
 
           {/* STEP 1: Select Space */}
           {step === 1 && (
-            <div className="space-y-6 animate-fade-in">
-              <h3 className="font-display-luxury text-2xl font-normal text-[#EDE8DF]">
+            <div className="space-y-5 sm:space-y-6 animate-fade-in">
+              <h3 className="font-display-luxury text-xl sm:text-2xl font-normal text-[#EDE8DF]">
                 What space are you looking to design or furnish?
               </h3>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
                 {[
                   { name: "Living Room", icon: "🛋️" },
                   { name: "Master Bedroom", icon: "🛏️" },
@@ -136,25 +136,25 @@ export default function ConsultationWizard() {
                     <div
                       key={item.name}
                       onClick={() => setFormData({ ...formData, roomType: item.name })}
-                      className={`cursor-pointer border p-4 rounded-xl flex flex-col items-center text-center transition-all ${
+                      className={`cursor-pointer border p-3 sm:p-4 rounded-xl flex flex-col items-center text-center transition-all ${
                         isSelected
                           ? "border-japandi-brass bg-[#2E251F] ring-1 ring-japandi-brass"
                           : "border-[#4D4036] bg-[#2E251F]/60 hover:border-[#6B5A4D]"
                       }`}
                     >
-                      <span className="text-2xl mb-2">{item.icon}</span>
-                      <span className="text-xs font-semibold text-[#EDE8DF]">{item.name}</span>
+                      <span className="text-xl sm:text-2xl mb-1.5 sm:mb-2">{item.icon}</span>
+                      <span className="text-[11px] sm:text-xs font-semibold text-[#EDE8DF]">{item.name}</span>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="flex justify-end pt-4">
+              <div className="flex justify-end pt-3 sm:pt-4">
                 <button
                   onClick={() => setStep(2)}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover transition-colors tracking-wide"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover transition-colors tracking-wide"
                 >
-                  Continue to Step 2
+                  <span>Continue to Step 2</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -163,12 +163,12 @@ export default function ConsultationWizard() {
 
           {/* STEP 2: Select Aesthetic */}
           {step === 2 && (
-            <div className="space-y-6 animate-fade-in">
-              <h3 className="font-display-luxury text-2xl font-normal text-[#EDE8DF]">
+            <div className="space-y-5 sm:space-y-6 animate-fade-in">
+              <h3 className="font-display-luxury text-xl sm:text-2xl font-normal text-[#EDE8DF]">
                 Select your preferred interior design aesthetic:
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 {[
                   {
                     title: "Japandi Serenity",
@@ -191,35 +191,35 @@ export default function ConsultationWizard() {
                     <div
                       key={style.title}
                       onClick={() => handleStyleSelect(style.title)}
-                      className={`cursor-pointer border p-4 rounded-xl space-y-2.5 transition-all ${
+                      className={`cursor-pointer border p-3 sm:p-4 rounded-xl space-y-2 sm:space-y-2.5 transition-all ${
                         isSelected
                           ? "border-japandi-brass bg-[#2E251F] ring-1 ring-japandi-brass"
                           : "border-[#4D4036] bg-[#2E251F]/60 hover:border-[#6B5A4D]"
                       }`}
                     >
-                      <div className="relative h-28 rounded-lg overflow-hidden">
+                      <div className="relative h-24 sm:h-28 rounded-lg overflow-hidden">
                         <Image src={style.img} alt={style.title} fill className="object-cover" />
                       </div>
-                      <span className="block font-display-luxury text-base font-normal text-[#EDE8DF]">{style.title}</span>
-                      <span className="block text-[11px] text-[#A69C90] leading-tight">{style.desc}</span>
+                      <span className="block font-display-luxury text-sm sm:text-base font-normal text-[#EDE8DF]">{style.title}</span>
+                      <span className="block text-[10px] sm:text-[11px] text-[#A69C90] leading-tight">{style.desc}</span>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="flex justify-between pt-4">
+              <div className="flex justify-between pt-3 sm:pt-4 gap-2">
                 <button
                   onClick={() => setStep(1)}
-                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg border border-[#4D4036] text-[#EDE8DF] text-xs font-semibold hover:bg-[#2E251F]"
+                  className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-lg border border-[#4D4036] text-[#EDE8DF] text-xs font-semibold hover:bg-[#2E251F]"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  Back
+                  <span>Back</span>
                 </button>
                 <button
                   onClick={() => setStep(3)}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover"
+                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover"
                 >
-                  Continue to Step 3
+                  <span>Continue to Step 3</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -228,12 +228,12 @@ export default function ConsultationWizard() {
 
           {/* STEP 3: Scope & Budget in Rupees */}
           {step === 3 && (
-            <div className="space-y-6 animate-fade-in">
-              <h3 className="font-display-luxury text-2xl font-normal text-[#EDE8DF]">
+            <div className="space-y-5 sm:space-y-6 animate-fade-in">
+              <h3 className="font-display-luxury text-xl sm:text-2xl font-normal text-[#EDE8DF]">
                 What is your estimated furniture &amp; design budget?
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                 {[
                   { range: "₹2.5 Lakh – ₹5 Lakh", desc: "Curated key furniture pieces & decorative lighting plan." },
                   { range: "₹5 Lakh – ₹15 Lakh", desc: "Full room transformation with custom millwork & 3D styling." },
@@ -244,20 +244,20 @@ export default function ConsultationWizard() {
                     <div
                       key={b.range}
                       onClick={() => handleBudgetSelect(b.range)}
-                      className={`cursor-pointer border p-4 rounded-xl flex flex-col transition-all ${
+                      className={`cursor-pointer border p-3 sm:p-4 rounded-xl flex flex-col transition-all ${
                         isSelected
                           ? "border-japandi-brass bg-[#2E251F] ring-1 ring-japandi-brass"
                           : "border-[#4D4036] bg-[#2E251F]/60 hover:border-[#6B5A4D]"
                       }`}
                     >
-                      <span className="font-display-luxury text-lg font-normal text-[#EDE8DF]">{b.range}</span>
-                      <span className="text-[11px] text-[#A69C90] mt-1 leading-relaxed">{b.desc}</span>
+                      <span className="font-display-luxury text-base sm:text-lg font-normal text-[#EDE8DF]">{b.range}</span>
+                      <span className="text-[10px] sm:text-[11px] text-[#A69C90] mt-1 leading-relaxed">{b.desc}</span>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="space-y-2 pt-2">
+              <div className="space-y-2 pt-1 sm:pt-2">
                 <label className="text-xs text-[#EDE8DF] font-medium block">
                   Project Notes or Room Dimensions (Optional):
                 </label>
@@ -270,19 +270,19 @@ export default function ConsultationWizard() {
                 />
               </div>
 
-              <div className="flex justify-between pt-4">
+              <div className="flex justify-between pt-3 sm:pt-4 gap-2">
                 <button
                   onClick={() => setStep(2)}
-                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg border border-[#4D4036] text-[#EDE8DF] text-xs font-semibold hover:bg-[#2E251F]"
+                  className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-lg border border-[#4D4036] text-[#EDE8DF] text-xs font-semibold hover:bg-[#2E251F]"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  Back
+                  <span>Back</span>
                 </button>
                 <button
                   onClick={() => setStep(4)}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover"
+                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover"
                 >
-                  Generate Estimate
+                  <span>Generate Estimate</span>
                   <Sparkles className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -291,33 +291,33 @@ export default function ConsultationWizard() {
 
           {/* STEP 4: Estimate & Submission */}
           {step === 4 && (
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-5 sm:space-y-6 animate-fade-in">
               {!isSuccess ? (
                 <>
-                  <div className="bg-[#2E251F] border border-[#4D4036] rounded-xl p-6 text-center space-y-3">
-                    <span className="w-10 h-10 rounded-full bg-japandi-brass/20 text-japandi-brass inline-flex items-center justify-center text-lg font-bold">
+                  <div className="bg-[#2E251F] border border-[#4D4036] rounded-xl p-4 sm:p-6 text-center space-y-3">
+                    <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-japandi-brass/20 text-japandi-brass inline-flex items-center justify-center text-lg font-bold">
                       ✓
                     </span>
-                    <h4 className="font-display-luxury text-3xl font-normal text-[#EDE8DF]">Project Scope Estimate</h4>
+                    <h4 className="font-display-luxury text-2xl sm:text-3xl font-normal text-[#EDE8DF]">Project Scope Estimate</h4>
                     
-                    <div className="grid grid-cols-3 gap-3 text-left py-4 border-y border-[#4D4036] text-xs">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3 text-left py-3 sm:py-4 border-y border-[#4D4036] text-xs">
                       <div>
-                        <span className="block text-[9px] uppercase tracking-luxury text-[#A69C90]">Selected Space</span>
-                        <span className="font-bold text-[#EDE8DF]">{formData.roomType}</span>
+                        <span className="block text-[8px] sm:text-[9px] uppercase tracking-luxury text-[#A69C90]">Selected Space</span>
+                        <span className="font-bold text-[#EDE8DF] text-[11px] sm:text-xs truncate block">{formData.roomType}</span>
                       </div>
                       <div>
-                        <span className="block text-[9px] uppercase tracking-luxury text-[#A69C90]">Design Vibe</span>
-                        <span className="font-bold text-[#EDE8DF]">{formData.preferredStyle}</span>
+                        <span className="block text-[8px] sm:text-[9px] uppercase tracking-luxury text-[#A69C90]">Design Vibe</span>
+                        <span className="font-bold text-[#EDE8DF] text-[11px] sm:text-xs truncate block">{formData.preferredStyle}</span>
                       </div>
                       <div>
-                        <span className="block text-[9px] uppercase tracking-luxury text-[#A69C90]">Turnaround</span>
-                        <span className="font-bold text-japandi-brass">3 – 5 Weeks</span>
+                        <span className="block text-[8px] sm:text-[9px] uppercase tracking-luxury text-[#A69C90]">Turnaround</span>
+                        <span className="font-bold text-japandi-brass text-[11px] sm:text-xs block">3 – 5 Weeks</span>
                       </div>
                     </div>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       <div>
                         <label className="text-xs text-[#EDE8DF] block mb-1">Your Full Name *</label>
                         <input
@@ -342,11 +342,11 @@ export default function ConsultationWizard() {
                       </div>
                     </div>
 
-                    <div className="flex justify-between items-center pt-2">
+                    <div className="flex flex-col-reverse xs:flex-row justify-between items-stretch xs:items-center gap-2.5 pt-2">
                       <button
                         type="button"
                         onClick={() => setStep(3)}
-                        className="px-5 py-2.5 rounded-lg border border-[#4D4036] text-[#EDE8DF] text-xs font-semibold hover:bg-[#2E251F]"
+                        className="px-5 py-2.5 rounded-lg border border-[#4D4036] text-[#EDE8DF] text-xs font-semibold hover:bg-[#2E251F] text-center"
                       >
                         ← Back
                       </button>
@@ -354,19 +354,19 @@ export default function ConsultationWizard() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="py-3 px-8 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover transition-colors shadow-lg disabled:opacity-50 tracking-wide"
+                        className="py-3 px-6 sm:px-8 rounded-lg bg-japandi-brass text-japandi-dark text-xs font-bold hover:bg-japandi-brassHover transition-colors shadow-lg disabled:opacity-50 tracking-wide text-center"
                       >
-                        {isSubmitting ? "Transmitting to Studio API..." : "Confirm & Book Complimentary Consultation"}
+                        {isSubmitting ? "Transmitting..." : "Confirm & Book Complimentary Consultation"}
                       </button>
                     </div>
                   </form>
                 </>
               ) : (
-                <div className="text-center py-10 space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-japandi-brass text-japandi-dark flex items-center justify-center text-2xl mx-auto shadow-lg">
+                <div className="text-center py-8 sm:py-10 space-y-3 sm:space-y-4">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-japandi-brass text-japandi-dark flex items-center justify-center text-xl sm:text-2xl mx-auto shadow-lg">
                     ✓
                   </div>
-                  <h3 className="font-display-luxury text-4xl font-normal text-white">Consultation Booked!</h3>
+                  <h3 className="font-display-luxury text-3xl sm:text-4xl font-normal text-white">Consultation Booked!</h3>
                   <p className="text-xs text-[#BFB5A8] max-w-md mx-auto leading-relaxed">
                     Thank you, <strong>{formData.customerName}</strong>. Our interior design studio has received your inquiry for the <strong>{formData.roomType}</strong>. Our architect will email your custom 3D moodboard concept within 24 hours.
                   </p>

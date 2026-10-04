@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { useStore } from "@/context/StoreContext";
@@ -7,13 +7,13 @@ export default function Footer() {
   const { setActiveRoomTab, openConsultation } = useStore();
 
   return (
-    <footer className="bg-japandi-dark text-japandi-bg py-16 border-t border-[#40352D]">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 text-xs">
+    <footer className="bg-japandi-dark text-japandi-bg py-12 sm:py-16 border-t border-[#40352D]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 text-xs">
         
         {/* Col 1 */}
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded bg-japandi-bg text-japandi-dark font-serif font-bold flex items-center justify-center text-sm">
+            <div className="w-8 h-8 rounded-sm bg-japandi-bg text-japandi-dark font-serif font-bold flex items-center justify-center text-sm shadow-sm">
               A
             </div>
             <span className="font-display-luxury text-2xl tracking-widest text-white">ARTIZ</span>
@@ -89,7 +89,7 @@ export default function Footer() {
 
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-[#40352D] text-[11px] text-[#8C827A] flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 sm:mt-12 pt-6 border-t border-[#40352D] text-[10px] sm:text-[11px] text-[#8C827A] flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-center sm:text-left">
         <span>&copy; 2026 ARTIZ Living &amp; Interiors Ltd. All rights reserved.</span>
         <span>Crafted with Warmth, Performance &amp; 2.5D Quiet Aesthetics.</span>
       </div>
